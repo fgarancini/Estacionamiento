@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style src=""></style>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="skeleton.css">
+
+</head>
+<body>
+    <form class="est-form" id="est-form">
+        <div class="container" id="tree-colums">
+            <h1>Estacionamiento</h1>
+            <label>Nombre:</label>
+            <input type="text" name="nombre" id="nombre">
+            <label>Espacios:</label>
+            <input type="text" name="espacios" id="espacios">
+            <button class="button-primary">Crear estacionamiento</button>
+        </div>
+    <div>
+    </form>
+    </div>
+    <form class="vehiculos-form" id="vehiculo-form">
+        <div class="container" style="margin-top: 5%;">
+            <h1>Vehiculo</h1>
+            <form>
+                <label for="autos">Elija un tipo de vehiculo:</label>
+                <select name="cars" id="cars">
+                    <option value="Auto">Auto</option>
+                    <option value="Moto">Moto</option>
+                    <option value="Camioneta">Camioneta</option>
+                </select>
+            </form>
+            <label>Modelo:</label>
+            <input type="text" name="modelo" id="modelo">
+            <label>Tiempo:</label>
+            <input type="text" name="tiempo" id="tiempo">
+            <button class="button-primary">Estacionar</button>
+        </div>
+    </form>
+    <div class="container">
+        <form id="saveButton">
+            <button class="button-primary">Guardar</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <ul class="list-group"></ul>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>

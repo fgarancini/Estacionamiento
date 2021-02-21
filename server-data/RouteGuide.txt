@@ -1,0 +1,4 @@
+Necesito traer el objeto segun el nombre del estacionamiento
+y luego patchear esos autos.
+
+Con este objeto crear la lista.

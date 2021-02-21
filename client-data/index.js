@@ -2,11 +2,17 @@
 const formEst = document.getElementById("est-form");
 const formVehiculos = document.getElementById("vehiculo-form");
 const saveButton = document.getElementById("saveButton");
+const lista = document.getElementById("tabla").getElementsByTagName('tbody')[0];
+
 const API_URL = "http://127.0.0.1:8080/datos";
+
 let data;
 let list;
+
+
 formVehiculos.style.display = "none";
 saveButton.style.display = "none";
+lista.style.display = "none";
 
 let parking = formEst.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -24,8 +30,8 @@ let parking = formEst.addEventListener("submit", (event) => {
     espacios,
     vehiculos: [],
   };
-  // console.log(estacionamiento);
-  // console.log(`Nombre ${nombre.value}, espacios ${espacios.value}`);
+
+  
 });
 
 let auto = formVehiculos.addEventListener("submit", (event) => {
@@ -35,21 +41,23 @@ let auto = formVehiculos.addEventListener("submit", (event) => {
   const tipo = formData.get("cars");
   const modelo = formData.get("modelo");
   const tiempo = formData.get("tiempo");
+  const patente = formData.get("patente");
 
   const vh = {
     tipo,
     modelo,
     tiempo,
+    patente
   }
   data.vehiculos.push(vh);
+  lista.style.display = "block";
 
   console.log(data);
-  // console.log(`Tipo: ${tipo.value},Modelo: ${modelo.value}, Tiempo: ${tiempo.value}`)
 });
 
 saveButton.addEventListener("submit", (event) => {
   event.preventDefault();
-  console.log(data);
+  
   fetch(API_URL, {
     method: "POST",
     body: JSON.stringify(data),
@@ -57,11 +65,30 @@ saveButton.addEventListener("submit", (event) => {
       "content-type": "application/json",
     },
   })
-    .then((response) => response.json())
-    .then((datoCreado) => {
-      list = datocreado;
-      console.log(datoCreado);
-    })
-    .catch((err) => console.log(err));
+  .then((response) => response.json())
+  .then((datoCreado) => {
+    console.log(datoCreado);
+    datoCreado.cars.forEach(auto =>{
+      let newRow = lista.insertRow();
+      let newCell = newRow.insertCell(cars.lenght);
+      let newText = document.createTextNode(`${auto.tipo}`);
+      newCell.appendChild(newText);
+      
+    });
+  })
+  .catch((err) => console.log(err)); 
+
+  console.log(data);
 });
 
+
+
+// let patchMethod = () => {
+//   return {
+//     method: "PATCH",
+//     body: JSON.stringify(data),
+//     headers: {
+//       "content-type": "application/json",
+//     }
+//   }
+// }

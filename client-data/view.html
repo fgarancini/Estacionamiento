@@ -37,18 +37,26 @@
             <input type="text" name="modelo" id="modelo">
             <label>Tiempo:</label>
             <input type="text" name="tiempo" id="tiempo">
+            <label>Patente:</label>
+            <input type="text" name="patente" id="patente">
             <button class="button-primary">Estacionar</button>
         </div>
     </form>
-    <div class="container">
+    <div class="container" >
         <form id="saveButton">
             <button class="button-primary">Guardar</button>
         </form>
     </div>
 
-    <div class="container">
-        <ul class="list-group"></ul>
-    </div>
+    <table class="u-full-width" id="tabla">
+        <thead>
+            <th>Tipo:</th>
+            <th>Modelo:</th>
+            <th>Patente:</th>
+            <th>Tiempo:</th>
+            <tbody><tr></tr></tbody>
+        </thead>
+    </table>
     <script src="index.js"></script>
 </body>
 </html>

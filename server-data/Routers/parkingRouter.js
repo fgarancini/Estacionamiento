@@ -3,14 +3,20 @@ const controller = require("./../Controllers/dataController");
 
 const router = express.Router();
 
-router
-  .route("/")
-  .get(controller.traerDato)
-  .post(controller.crearDato);
+// router.param('nombre', controller.validarNombre);
+
 
 router
-  .route('/')
-  .delete(controller.eliminarDato);
+  .route("/")
+  .post(controller.crearDato)
+  .get(controller.traerDato)
+  .get(controller.traerUnDato);
+  
+  
+  // router
+  // .route('/:')
+  // .get(controller.traerUnDato);
+  //.delete(controller.eliminarDato);
   
 
 // app.delete('/datos/:name', (req,res) =>{

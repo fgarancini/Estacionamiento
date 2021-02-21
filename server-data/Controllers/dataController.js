@@ -1,7 +1,6 @@
-const monk = require('monk');
-const db = monk(process.env.MONGO_URI ||'localhost:27017/parking');
-const datos = db.get('datos');
-
+const monk = require("monk");
+const db = monk(process.env.MONGO_URI || "localhost:27017/parking");
+const datos = db.get("datos");
 
 function isValid(parking) {
   return (
@@ -11,9 +10,12 @@ function isValid(parking) {
     parking.espacios.toString().trim() != ""
   );
 }
-
+exports.validarNombre = (req,res,next,val) =>{
+  console.log(`${req.params}.......${val}`);
+  next();
+};
 exports.isValidCar = (req, res, next) => {
-    console.log('hello');
+  console.log("hello");
   if (!isValid(req.body)) {
     return res.status(404).json({
       message: "Name and spaces are required",
@@ -31,23 +33,29 @@ exports.crearDato = (req, res) => {
     created: new Date(),
   };
 
-  datos
-  .insert(parking)
-  .then((datoCreado) => {
+  datos.insert(parking).then((datoCreado) => {
     res.json(datoCreado);
   });
 };
 
+exports.traerUnDato = (req, res) => {
+  console.log(req.params);
+  const key = req.params;
+  const estacionamiento = datos.find(el => {
+    if(el.nombre === key) 
+    console.log(el);
+    return el;
+  });
+  
+};
 exports.traerDato = (req, res) => {
   // if(!datos) return console.log('Datos vacios');
 
-  datos.find().then((datos) =>
-    res.status(200).json(datos)
-  );
+  datos.find().then((datos) => res.status(200).json(datos));
 };
 
-exports.eliminarDato = (req,res) => {
+exports.eliminarDato = (req, res) => {
   // datos.remove(datos[vehiculos].splice(patente,1))
   const arr = datos[vehiculos].split();
   console.log(arr);
-}
+};
